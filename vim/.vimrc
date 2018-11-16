@@ -61,7 +61,8 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'} "unite require this plug"
 
 "colors
 "Plug 'jeaye/color_coded'
-Plug 'kien/rainbow_parentheses.vim'
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'luochen1990/rainbow'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 
@@ -191,12 +192,19 @@ set mouse=a
 set bs=2 "make backspace behave like normal again
 
 "RainbowParentheses
-let g:rbpt_loadcmd_toggle = 0
-"RainbowParentheses always on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"let g:rainbow_active = 1
+"let g:rainbow_conf = {
+"    \'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"	\'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"	\'operators': '_,_',
+"	\'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+"    \ 'separately': {
+"    \   'cpp': {
+"    \     'parentheses': [
+"    \       'start=/(/ end=/)/ fold',
+"    \       'start=/\[/ end=/\]/ fold',
+"    \       'start=/{/ end=/}/ fold',
+"    \       'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]\@<=<\ze[^<]/ end=/>/'] } } }
 
 syntax on
 filetype plugin indent on
