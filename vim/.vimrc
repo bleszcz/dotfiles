@@ -586,9 +586,9 @@ let g:jedi#goto_command = "<leader>jg"
 "let g:jedi#goto_assignments_command = "<leader>a"
 "let g:jedi#goto_definitions_command = ""
 "let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>jr"
+"let g:jedi#usages_command = "<leader>jr"
 "let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>R"
+let g:jedi#rename_command = "<leader>jr"
 
 
 let g:agprg="<custom-ag-path-goes-here> --column"
@@ -622,7 +622,7 @@ nnoremap <leader>ug :Unite grep:.<cr>
 nnoremap <silent><leader>s :<C-u>Unite -no-quit -keep-focus grep:.:-G\ '[ch]pp' <CR>
 nnoremap <silent><leader>lg :<C-u>Unite -no-quit -keep-focus grep<CR>
 nnoremap <silent><leader>k :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ 'py' <CR>
-nnoremap <silent><leader>j :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ '\.\(c\|cpp\|h\)' <CR>
+nnoremap <silent><leader>c :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ '\.\(c\|cpp\|h\)' <CR>
 "nnoremap <leader>lj :Unite -start-insert -no-quit -keep-focus grep:.:-G\ 'py'<C-R><C-w><CR>
 
 "===============================================================================
