@@ -24,7 +24,7 @@ void heaps()
     std::vector<int> v{3, 5, 2, 1, 4, 3, 3, 10, 5, 8, 9, 1, 2, 3};
     std::vector<dupa> dv{{1, 2}, {3, 5}, {4, 6}, {1, 2}};
     std::cout << "initially v: " << std::endl;
-    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, ", " ));
+    std::copy(v.cbegin(), v.cend(), std::ostream_iterator<int>(std::cout, ", " ));
     //std::for_each(v.cbegin(), v.cend(), [] (int x) {std::cout << x << ", ";} );
     std::cout << std::endl;
 
@@ -127,8 +127,25 @@ void sorts()
      *  possible implementation:
     */
 
+    // sort using a standard library compare function object
+    //std::sort(v.begin(), v.end(), std::greater<int>());
+    //
+    // sort using a custom function object
+  //  struct {
+  //      bool operator()(int a, int b) const
+  //      {
+  //          return a < b;
+  //      }
+  //  } customLess;
+  //  std::sort(s.begin(), s.end(), customLess);
+
+    // sort using a lambda expression
+    //std::sort(s.begin(), s.end(), [](int a, int b) {
+    //    return a > b;
+    //});
 
     std::sort(v.begin(), v.end());
+
     std::cout << "after sort:" << std::endl;
     std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, ", "));
 
@@ -168,18 +185,142 @@ void sorts()
      *
      * Complexity
      *
-     *  O(N·log(N)), where N = std::distance(first, last) comparisons. (since c++11)
-     *
+     *  1,3) Linear in std::distance(first, last) on average.
+     *  2,4) O(N) applications of the predicate, and O(N log N) swaps, where N = last - first.     *
     */
 
-    std::nth_element(v.begin(), v.end());
+    v = {3, 5, 2, 1, 4, 3, 3, 10, 5, 8, 9, 1, 2, 3};
+    std::cout << "vector before nth_element" << std::endl;
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, ", "));
+    std::cout << "\n";
+
+    std::nth_element(v.begin(), v.begin()+8, v.end());
+
+    std::cout << "vector after nth_element: \n";
+    std::for_each(v.begin(), v.end(), [](int x){ std::cout << x << ", ";});
+    std::cout << "\n";
+
+    v = {3, 5, 2, 1, 4, 3, 3, 10, 5, 8, 9, 1, 2, 3};
+    std::nth_element(v.begin(), v.begin()+1, v.end(), std::greater<int>());
+
+    std::cout << "vector after nth_element: \n";
+    std::for_each(v.begin(), v.end(), [](int x){ std::cout << x << ", ";});
+    std::cout << "\n";
+
+    /* inplace_marge
+     *
+     * Complexity
+     *
+     * Given N = std::distance(first, last)},
+     *
+     *   1,3) Exactly N-1 comparisons if enough additional memory is available. If the memory is insufficient, O(N log N) comparisons.
+     *   2,4) O(N log N) comparisons.
+    */
+
+    //std::inplace_merge(first, middle, last);
+    // inplace_merge merges vector with two sorted parts {1,2,5,10,  2,4,6,7,8,11}
+    v = {1,2,5,10,  2,4,6,7,8,11};
+    std::inplace_merge(v.begin(), v.begin()+4, v.end());
+    for(auto x : v) std::cout << x << ", ";
+    std::cout << "\n";
+}
+
+void partitions()
+{
+    std::vector<int> v{3, 5, 2, 1, 4, 3, 3, 10, 5, 8, 9, 1, 2, 3};
+    std::vector<dupa> dv{{1, 2}, {3, 5}, {4, 6}, {1, 2}};
+    std::cout << "initially v: " << std::endl;
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, ", " ));
+    std::cout << "\n";
+
+    /* partition
+     * 1) Reorders the elements in the range [first, last) in such a way that
+     *    that all elements for which the predicate p returns true precede
+     *    the elements for which predicate p returns false.
+     *    Relative order of the elements is not preserved.
+     * 2) Same as (1), but executed according to policy.
+     *    This overload does not participate in overload resolution unless
+     *    std::is_execution_policy_v<std::decay_t<ExecutionPolicy>> is true
+     * Complexity:
+     *
+     *
+     *
+     *  possible implementation:
+    */
+
+    /*
+    template<class ForwardIt, class UnaryPredicate>
+    ForwardIt partition(ForwardIt first, ForwardIt last, UnaryPredicate p)
+    {
+        first = std::find_if_not(first, last, p);
+        if (first == last) return first;
+
+        for (ForwardIt i = std::next(first); i != last; ++i) {
+            if (p(*i)) {
+                std::iter_swap(i, first);
+                ++first;
+            }
+        }
+        return first;
+    }
+    */
+
+    auto it = std::partition(v.begin(), v.end(), [](int i){ return i % 2 == 0;});
+    std::cout << "vector after partition" << std::endl;
+    for(auto x : v) std::cout << x << ", "; std::cout << std::endl;
+
+    std::cout << "partitioned vector" << std::endl;
+    std::copy(std::begin(v), it, std::ostream_iterator<int>(std::cout, ", "));
+    std::cout << "\n";
+
+    /* partition_point
+     *
+     *  Examines the partitioned (as if by std::partition) range [first, last) and
+     *  locates the end of the first partition, that is, the first element that
+     *  does not satisfy p or last if all elements satisfy p.
+     *
+     * Complexity:
+     *
+     *  O(n).
+     *
+     *  Given N = std::distance(first, last), performs O(log N) applications of the predicate p.
+     *  However, for non-RandomAccessIterators, the number of iterator increments is O(N).
+     *
+     *  possible implementation:
+    */
+
+    v = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+
+    auto is_even = [](int i){ return i % 2 == 0; };
+    std::partition(v.begin(), v.end(), is_even);
+
+    auto p = std::partition_point(v.begin(), v.end(), is_even);
+
+    std::cout << "Before partition point:\n    ";
+    std::copy(v.begin(), p, std::ostream_iterator<int>(std::cout, " "));
+    std::cout << "\nAfter partition point:\n    ";
+    std::copy(p, v.end(), std::ostream_iterator<int>(std::cout, " "));
+}
+
+void parmutations()
+{
+
+    std::vector<int> v{3, 5, 2, 1, 4, 3, 3, 10, 5, 8, 9, 1, 2, 3};
+    std::vector<dupa> dv{{1, 2}, {3, 5}, {4, 6}, {1, 2}};
+    std::cout << "initially v: " << std::endl;
+    std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, ", " ));
+    std::cout << "\n";
+
 
 }
 
 int main()
 {
-    heaps();
-    sorts();
+//    heaps();
+//    sorts();
+//    partitions();
+    parmutations();
+
 
     return 0;
 }
