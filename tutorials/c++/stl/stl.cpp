@@ -683,10 +683,133 @@ void queries()
      */
 
     //std::sample();
+    //
+    //
+    //
+
+//querying a property:
+//    all_of
+//    any_of
+//    none_of
+//
+//querying a property on 2 ranges:
+//  equal
+//  lexicographical_compare
+//  mismatch
+//
+// searching a value:
+//  find
+//  adjacent_find
+//  equal_range
+//  lower_bound
+//  upper_bound
+//  binary_search
+//
+//searching a range:
+//  search
+//  find_end
+//  find_first_of
+//
+//searching a relative value:
+//  max_element
+//  min_element
+//  minmax_element
+//
+//
 }
 
 
+void sets()
+{
+//algos on sets
+//  set_difference
+//  set_union
+//  includes
+//  set_insersection
+//  set_symmetric_difference
+//  merge
+}
 
+void movers()
+{
+//copy
+//move
+//swap_ranges
+//copy_backward
+//move_backward
+}
+
+void value_modifiers()
+{
+    //fill
+    //generate
+    //iota
+    //replace
+}
+
+void structure_changers()
+{
+    //remove
+    //unique
+}
+
+void _copy()
+{
+    //remove_copy
+    //unique_copy
+    //reverse_copy
+    //rotate_copy
+    //replace_copy
+    //partition_copy
+    //partial_sort_copy
+}
+
+void _if()
+{
+    //find_if
+    //find_if_not
+    //count_if
+    //remove_if
+    //remove_copy_if
+    //replace_if
+    //replace_copy_if
+    //copy_if
+}
+
+void transform()
+{
+    //transform
+}
+
+void for_each()
+{
+    //for_each
+}
+
+void _n()
+{
+    //copy_n
+    //fill_n
+    //generate_n
+    //search_n
+    //for_each_n
+    //uninitialized_copy_n
+    //uninitialized_fill_n
+    //uninitialized_move_n
+    //uninitialized_default_construct_n
+    //uninitialized_value_construct_n
+    //destroy_n
+}
+
+void raw_memory()
+{
+    //uninitialized_copy
+    //uninitialized_fill
+    //uninitialized_move
+    //uninitialized_default_construct
+    //uninitialized_value_construct
+    //destroy
+}
 int main()
 {
 //    heaps();
