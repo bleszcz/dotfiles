@@ -61,7 +61,8 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'} "unite require this plug"
 
 "colors
 "Plug 'jeaye/color_coded'
-Plug 'kien/rainbow_parentheses.vim'
+"Plug 'kien/rainbow_parentheses.vim'
+"Plug 'luochen1990/rainbow'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 
@@ -191,12 +192,19 @@ set mouse=a
 set bs=2 "make backspace behave like normal again
 
 "RainbowParentheses
-let g:rbpt_loadcmd_toggle = 0
-"RainbowParentheses always on
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"let g:rainbow_active = 1
+"let g:rainbow_conf = {
+"    \'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+"	\'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+"	\'operators': '_,_',
+"	\'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+"    \ 'separately': {
+"    \   'cpp': {
+"    \     'parentheses': [
+"    \       'start=/(/ end=/)/ fold',
+"    \       'start=/\[/ end=/\]/ fold',
+"    \       'start=/{/ end=/}/ fold',
+"    \       'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]\@<=<\ze[^<]/ end=/>/'] } } }
 
 syntax on
 filetype plugin indent on
@@ -578,9 +586,9 @@ let g:jedi#goto_command = "<leader>jg"
 "let g:jedi#goto_assignments_command = "<leader>a"
 "let g:jedi#goto_definitions_command = ""
 "let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>jr"
+"let g:jedi#usages_command = "<leader>jr"
 "let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>R"
+let g:jedi#rename_command = "<leader>jr"
 
 
 let g:agprg="<custom-ag-path-goes-here> --column"
@@ -614,7 +622,7 @@ nnoremap <leader>ug :Unite grep:.<cr>
 nnoremap <silent><leader>s :<C-u>Unite -no-quit -keep-focus grep:.:-G\ '[ch]pp' <CR>
 nnoremap <silent><leader>lg :<C-u>Unite -no-quit -keep-focus grep<CR>
 nnoremap <silent><leader>k :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ 'py' <CR>
-nnoremap <silent><leader>j :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ '\.\(c\|cpp\|h\)' <CR>
+nnoremap <silent><leader>c :<C-u>UniteWithCursorWord -no-quit -keep-focus grep:.:-G\ '\.\(c\|cpp\|h\)' <CR>
 "nnoremap <leader>lj :Unite -start-insert -no-quit -keep-focus grep:.:-G\ 'py'<C-R><C-w><CR>
 
 "===============================================================================
