@@ -1,0 +1,11 @@
+1. Create a new repository
+    echo "# dotfiles" >> README.md
+    git init
+    git add README.md
+    git commit -m "first commit"
+    git remote add origin https://github.com/bleszcz/dotfiles.git
+    git push -u origin master
+
+or push an existing repository:
+    git remote add origin https://github.com/bleszcz/dotfiles.git
+    git push -u origin master
